@@ -9,13 +9,18 @@ import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
 public interface InterfaceColetaDadosMoveis {
 
     interface coletaDadosPresenter{
-        String getCodigoOperadora();
+       /* String getCodigoOperadora();
         LocalizacaoGeografica getLocalizacaoGeografrica();
-        int getTipoServicoRede();
+        int getTipoServicoRede();*/
+        void setCodigoOperadora(String codigoOperadora);
+        void setLocalizacaoGeografica(LocalizacaoGeografica localizacaoGeografica);
+        void setTiposServicoRede(int tipoServicoRede);
+
     }
 
     interface coletaDadosView{
         String sucessoTransmissao();
+        void setarDadosView();
     }
 
 }
