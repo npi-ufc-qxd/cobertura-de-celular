@@ -14,7 +14,7 @@ public interface InterfaceColetaDadosMoveis {
         int getTipoServicoRede();*/
         void setCodigoOperadora(String codigoOperadora);
         void setLocalizacaoGeografica(LocalizacaoGeografica localizacaoGeografica);
-        void setTiposServicoRede(int tipoServicoRede);
+        void setTipoServicoRede(int tipoServicoRede);
 
     }
 

@@ -18,21 +18,6 @@ public class ColetaDados {
     private Context context;
 
 
-
-    public LocalizacaoGeografica getLocalizacaoGeografrica() {
-        Location location = new Location("Localizacao");
-
-        LocalizacaoGeografica localizacaoGeografica = new LocalizacaoGeografica();
-        localizacaoGeografica.setLatitude(location.getLatitude());
-        localizacaoGeografica.setLongitude(location.getLongitude());
-        localizacaoGeografica.setAltitude(location.getAltitude());
-
-        return localizacaoGeografica;
-
-
-    }
-
-
     public int getTipoServicoRede() {
         TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         int tipoDeRede = manager.getNetworkType();
