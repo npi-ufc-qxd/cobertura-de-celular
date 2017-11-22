@@ -8,16 +8,15 @@ import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 
 import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
+import npi.ufc.com.coberturacelular.presenter.ColetaDadosMoveis;
 import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
 
 /**
- * Created by 06129767340 on 13/11/17.
+ * Created by Júlio Martins on 13/11/17.
  */
 
 public class ColetaDadosService extends IntentService{
     InterfaceColetaDadosMoveis.coletaDadosPresenter interfaceColeta;
-
-
 
 
     /**
@@ -28,6 +27,8 @@ public class ColetaDadosService extends IntentService{
      */
     public ColetaDadosService() {
         super("ColetaDadosService");
+        interfaceColeta = new ColetaDadosMoveis();
+
     }
 
         private Context context;
@@ -45,23 +46,32 @@ public class ColetaDadosService extends IntentService{
             private Context context;
             public void run(){
 
-                TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-                String codigoOperadora = manager.getNetworkOperator();
-                String codigoProvedorSim = manager.getSimOperator();
 
-                Location location = new Location("Localizacao");
+                try{
+                    TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+                    String codigoOperadora = manager.getNetworkOperator();
+                    String codigoProvedorSim = manager.getSimOperator();
 
-                LocalizacaoGeografica localizacaoGeografica = new LocalizacaoGeografica();
-                localizacaoGeografica.setLatitude(location.getLatitude());
-                localizacaoGeografica.setLongitude(location.getLongitude());
-                localizacaoGeografica.setAltitude(location.getAltitude());
+                    Location location = new Location("Localizacao");
 
-                manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-                int tipoDeRede = manager.getNetworkType();
+                    LocalizacaoGeografica localizacaoGeografica = new LocalizacaoGeografica();
+                    localizacaoGeografica.setLatitude(location.getLatitude());
+                    localizacaoGeografica.setLongitude(location.getLongitude());
+                    localizacaoGeografica.setAltitude(location.getAltitude());
 
-                interfaceColeta.setCodigoOperadora(codigoOperadora);
-                interfaceColeta.setLocalizacaoGeografica(localizacaoGeografica);
-                interfaceColeta.setTipoServicoRede(tipoDeRede);
+                    manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+                    int tipoDeRede = manager.getNetworkType();
+
+                    interfaceColeta.setCodigoOperadora(codigoOperadora);
+                    interfaceColeta.setLocalizacaoGeografica(localizacaoGeografica);
+                    interfaceColeta.setTipoServicoRede(tipoDeRede);
+                }
+
+                catch (NullPointerException e){
+                    interfaceColeta.mensagemErro("Não foi possível coletar os dados");
+                }
+
+
 
             }
 

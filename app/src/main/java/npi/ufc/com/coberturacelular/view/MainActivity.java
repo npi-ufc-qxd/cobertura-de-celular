@@ -8,10 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import npi.ufc.com.coberturacelular.R;
+import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
+import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InterfaceColetaDadosMoveis.coletaDadosView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +53,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public String sucessoTransmissao() {
+        return null;
+    }
+
+    @Override
+    public void setarCodigoOperadora(String codigoOperadora) {
+        Toast.makeText(this, "CÓDIGO OPERADORA: " + codigoOperadora , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setarLocalizaoGeografica(LocalizacaoGeografica localizacaoGeografica) {
+        Toast.makeText(this, "LOCALIZACAO: " + localizacaoGeografica.toString(), + Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setarServiceRede(int tipoServicoRede) {
+        Toast.makeText(this, "TIPO SERVICE: " + tipoServicoRede, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void mensagemErro(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

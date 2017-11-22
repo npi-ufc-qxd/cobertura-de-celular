@@ -15,12 +15,16 @@ public interface InterfaceColetaDadosMoveis {
         void setCodigoOperadora(String codigoOperadora);
         void setLocalizacaoGeografica(LocalizacaoGeografica localizacaoGeografica);
         void setTipoServicoRede(int tipoServicoRede);
+        void mensagemErro(String msg);
 
     }
 
     interface coletaDadosView{
         String sucessoTransmissao();
-        void setarDadosView();
+        void setarCodigoOperadora(String codigoOperadora);
+        void setarLocalizaoGeografica(LocalizacaoGeografica localizacaoGeografica);
+        void setarServiceRede(int tipoServicoRede);
+        void mensagemErro(String msg);
     }
 
 }
