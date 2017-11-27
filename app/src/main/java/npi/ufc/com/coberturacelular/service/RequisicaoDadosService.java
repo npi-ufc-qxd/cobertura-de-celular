@@ -46,6 +46,7 @@ public class RequisicaoDadosService extends Application{
                 //Este código é executado se tiver error.
             }
         }) {
+
             //Adicione aqui os dados que você quer mandar pro servidor.
             protected Map<String, String> getParams() {
                 Map<String, String> meusDados = new HashMap<String, String>();
