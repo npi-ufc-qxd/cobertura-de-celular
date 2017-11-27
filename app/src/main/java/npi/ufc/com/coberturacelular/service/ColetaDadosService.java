@@ -7,6 +7,12 @@ import android.location.Location;
 import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import npi.ufc.com.coberturacelular.model.DadosMoveis;
 import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
 import npi.ufc.com.coberturacelular.presenter.ColetaDadosMoveis;
 import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
@@ -17,6 +23,8 @@ import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
 
 public class ColetaDadosService extends IntentService{
     InterfaceColetaDadosMoveis.coletaDadosPresenter interfaceColeta;
+    DadosMoveis dadosMoveis;
+    RequisicaoDadosService requisicaoServidor;
 
 
     /**
@@ -37,17 +45,22 @@ public class ColetaDadosService extends IntentService{
     /**
      *
      *
-     * Coleta os dados de localização geográfica, código da operado e o tipo de Rede
+     * Coleta os dados de localização geográfica, código da operado e o tipo de Rede e
+     * envio para o servidor rest temporário para fins de teste
      *
      */
     @Override
     protected void onHandleIntent(final Intent intent) {
+
         new Thread(){
             private Context context;
             public void run(){
 
 
                 try{
+
+
+
                     TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
                     String codigoOperadora = manager.getNetworkOperator();
                     String codigoProvedorSim = manager.getSimOperator();
@@ -59,16 +72,24 @@ public class ColetaDadosService extends IntentService{
                     localizacaoGeografica.setLongitude(location.getLongitude());
                     localizacaoGeografica.setAltitude(location.getAltitude());
 
-                    manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-                    int tipoDeRede = manager.getNetworkType();
+                    float precisaoEmMetros = localizacaoGeografica.getPrecisaoEmMetros();
 
-                    interfaceColeta.setCodigoOperadora(codigoOperadora);
-                    interfaceColeta.setLocalizacaoGeografica(localizacaoGeografica);
-                    interfaceColeta.setTipoServicoRede(tipoDeRede);
+                    manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+
+                    int tipoDeRede = manager.getNetworkType();
+                    dadosMoveis = new DadosMoveis();
+                    dadosMoveis.setCodigoNumericoOperadora(codigoOperadora);
+                    dadosMoveis.setLocalizacao(localizacaoGeografica);
+                    dadosMoveis.setRaioErroEstimativa(precisaoEmMetros);
+
+                    requisicaoServidor = new RequisicaoDadosService();
+                    requisicaoServidor.requisicaoPostServidor(dadosMoveis);
+
+
                 }
 
                 catch (NullPointerException e){
-                    interfaceColeta.mensagemErro("Não foi possível coletar os dados");
+                    interfaceColeta.mensagemErro("Erro na comunicação com o servidor");
                 }
 
 
