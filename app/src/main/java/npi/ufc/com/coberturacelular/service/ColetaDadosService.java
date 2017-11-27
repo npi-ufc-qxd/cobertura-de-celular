@@ -81,6 +81,8 @@ public class ColetaDadosService extends IntentService{
                     dadosMoveis.setCodigoNumericoOperadora(codigoOperadora);
                     dadosMoveis.setLocalizacao(localizacaoGeografica);
                     dadosMoveis.setRaioErroEstimativa(precisaoEmMetros);
+                    dadosMoveis.setStatusTransmissao(true); // dado ficticio
+                    dadosMoveis.setLatencia(12); // dado ficticio
 
                     requisicaoServidor = new RequisicaoDadosService();
                     requisicaoServidor.requisicaoPostServidor(dadosMoveis);
