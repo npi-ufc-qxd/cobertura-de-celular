@@ -1,8 +1,11 @@
 package npi.ufc.com.coberturacelular.service;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.location.Location;
 import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
@@ -11,6 +14,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import npi.ufc.com.coberturacelular.model.DadosMoveis;
 import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
@@ -22,9 +28,12 @@ import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
  */
 
 public class ColetaDadosService extends IntentService{
+    public static final int SERVICE_ID = 0;
     InterfaceColetaDadosMoveis.coletaDadosPresenter interfaceColeta;
     DadosMoveis dadosMoveis;
     RequisicaoDadosService requisicaoServidor;
+    private Context context;
+    private Timer timer;
 
 
     /**
@@ -39,7 +48,7 @@ public class ColetaDadosService extends IntentService{
 
     }
 
-        private Context context;
+
 
 
     /**
@@ -52,8 +61,12 @@ public class ColetaDadosService extends IntentService{
     @Override
     protected void onHandleIntent(final Intent intent) {
 
+
+
         new Thread(){
             private Context context;
+
+
             public void run(){
 
 
@@ -91,7 +104,7 @@ public class ColetaDadosService extends IntentService{
                 }
 
                 catch (NullPointerException e){
-                    interfaceColeta.mensagemErro("Erro na comunicação com o servidor");
+                    //interfaceColeta.mensagemErro("Erro na comunicação com o servidor");
                 }
 
 
@@ -102,6 +115,8 @@ public class ColetaDadosService extends IntentService{
 
 
         }.start();
+
+
 
     }
 }
