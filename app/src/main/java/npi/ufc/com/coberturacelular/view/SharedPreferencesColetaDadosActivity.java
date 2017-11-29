@@ -43,7 +43,7 @@ public class SharedPreferencesColetaDadosActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
-        long interval = preferences.getInt("tempo-coleta",0); // Tempo de atualização do serviço
+        long interval = 1000 * 60 * preferences.getInt("tempo-coleta",0); // Tempo de atualização do serviço em ms
         Log.i("TAG", "MENSAGEM" + interval);
         Intent serviceIntent = new Intent(ctx, ColetaDadosService.class);
 
