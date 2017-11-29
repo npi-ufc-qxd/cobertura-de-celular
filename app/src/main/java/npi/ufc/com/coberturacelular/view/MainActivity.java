@@ -15,13 +15,15 @@ import npi.ufc.com.coberturacelular.R;
 import npi.ufc.com.coberturacelular.model.LocalizacaoGeografica;
 import npi.ufc.com.coberturacelular.presenter.ColetaDadosMoveis;
 import npi.ufc.com.coberturacelular.presenter.InterfaceColetaDadosMoveis;
+import npi.ufc.com.coberturacelular.service.ColetaDadosService;
 
 public class MainActivity extends AppCompatActivity implements InterfaceColetaDadosMoveis.coletaDadosView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent = new Intent(MainActivity.this, ColetaDadosMoveis.class);
+        Intent intent = new Intent(MainActivity.this, ColetaDadosService.class);
         startService(intent);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
