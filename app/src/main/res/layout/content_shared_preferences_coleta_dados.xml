@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="npi.ufc.com.coberturacelular.view.SharedPreferencesColetaDadosActivity"
+    tools:showIn="@layout/activity_shared_preferences_coleta_dados">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="65dp" />
+
+    <RadioButton
+        android:id="@+id/radio-um-minuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="1 min"
+        app:layout_constraintBottom_toTopOf="@+id/radio-cinco-minutos"
+        app:layout_constraintTop_toBottomOf="@+id/texto-shared-preferences"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <RadioButton
+        android:id="@+id/radio-cinco-minutos"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="5 min"
+        app:layout_constraintBottom_toTopOf="@+id/radio-trinta-minutos"
+        app:layout_constraintTop_toBottomOf="@+id/radio-um-minuto"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <RadioButton
+        android:id="@+id/radio-trinta-minutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="30 min"
+        app:layout_constraintBottom_toTopOf="@+id/radio-duas-horas"
+        app:layout_constraintTop_toBottomOf="@+id/radio-cinco-minutos"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <RadioButton
+        android:id="@+id/radio-duas-horas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="2h"
+        app:layout_constraintBottom_toTopOf="@+id/radio-seis-horas"
+        app:layout_constraintTop_toBottomOf="@+id/radio-trinta-minutos"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <RadioButton
+        android:id="@+id/radio-seis-horas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="6h"
+        app:layout_constraintBottom_toTopOf="@+id/radio-vinta-quatro-horas"
+        app:layout_constraintTop_toBottomOf="@+id/radio-duas-horas"
+        tools:layout_editor_absoluteX="110dp" />
+
+    <RadioButton
+        android:id="@+id/radio-vinte-quatro-horas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="radioCheckedSharedPreferences"
+        android:text="24h"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio-seis-horas"
+        tools:layout_editor_absoluteX="110dp" />
+
+
+    <TextView
+        android:id="@+id/texto-shared-preferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione a periodicidade da coleta dos dados:"
+        app:layout_constraintBottom_toTopOf="@+id/radio-um-minuto"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="99dp" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">CoberturaCelular</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_shared_preferences_coleta_dados">SharedPreferencesColetaDados
+    </string>
 </resources>

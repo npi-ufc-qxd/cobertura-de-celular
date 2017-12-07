@@ -10,7 +10,15 @@ public class DadosMoveis {
     private String tipoDeRede;
     private boolean statusTransmissao;
     private int latencia;
+    private float raioErroEstimativa;
 
+    public float getRaioErroEstimativa() {
+        return raioErroEstimativa;
+    }
+
+    public void setRaioErroEstimativa(float raioErroEstimativa) {
+        this.raioErroEstimativa = raioErroEstimativa;
+    }
 
     public String getCodigoNumericoOperadora() {
         return codigoNumericoOperadora;
